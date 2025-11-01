@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    container_name: ci_cd_app
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: myapp
+    ports:
+      - "3306:3306"

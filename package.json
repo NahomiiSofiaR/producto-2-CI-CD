@@ -1,0 +1,20 @@
+{
+  "name": "ci-cd-sample-app",
+  "version": "1.0.0",
+  "description": "Sample Node.js app for CI/CD case study",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --reporter spec || true"
+  },
+  "author": "Auto-generated",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "chai": "^4.3.7",
+    "supertest": "^6.3.3"
+  }
+}
