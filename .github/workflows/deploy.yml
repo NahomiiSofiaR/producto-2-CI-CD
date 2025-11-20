@@ -28,7 +28,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t myapp:${{ github.sha }} .
 
-      # SERVIDOR SIMULADO
       - name: Create fake server
         run: mkdir -p fake_server
 
@@ -36,12 +35,17 @@ jobs:
         run: cp docker-compose.yml fake_server/
 
       - name: Copy project files to fake server
-        run: cp -R . fake_server/
+        run: |
+          cp -R package*.json fake_server/
+          cp -R Dockerfile fake_server/
+          cp -R src fake_server/ || true
+          cp -R test fake_server/ || true
+          cp -R app.js fake_server/ || true
 
       - name: Deploy (simulate docker compose up)
         run: |
           cd fake_server
-          docker compose up -d --build
+          docker compose up -d --build || docker-compose up -d --build
 
       - name: Show running containers
         run: docker ps
